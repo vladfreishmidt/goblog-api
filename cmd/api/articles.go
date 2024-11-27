@@ -24,6 +24,7 @@ func (app *application) showArticleHandler(w http.ResponseWriter, r *http.Reques
 		Title:       "Go Turns 15",
 		PublishDate: time.Date(2024, time.Month(10), 15, 0, 0, 0, 0, time.UTC),
 		SourceURL:   "https://go.dev/blog/15years",
+		ReadTime:    1,
 		Tags:        []string{"functions", "anniversary"},
 		Authors:     []string{"Austin Clements"},
 		Version:     1,

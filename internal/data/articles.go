@@ -12,7 +12,7 @@ type Article struct {
 	CreatedAt    time.Time    `json:"-"`
 	Title        string       `json:"title"`
 	PublishDate  time.Time    `json:"publish_date"`
-	ReadTime     int          `json:"read_time"`
+	ReadTime     ReadTime     `json:"read_time ,omitempty"`
 	Authors      []string     `json:"authors"`
 	Excerpt      string       `json:"excerpt"`
 	Tags         []string     `json:"tags"`
