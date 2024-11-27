@@ -3,13 +3,13 @@ package data
 import "time"
 
 type RelatedLinks struct {
-	Previous string `json:"prev"`
-	Next     string `json:"next"`
+	Previous string `json:"prev ,omitempty"`
+	Next     string `json:"next ,omitempty"`
 }
 
 type Article struct {
 	ID           int64        `json:"id"`
-	CreatedAt    time.Time    `json:"created_at"`
+	CreatedAt    time.Time    `json:"-"`
 	Title        string       `json:"title"`
 	PublishDate  time.Time    `json:"publish_date"`
 	ReadTime     int          `json:"read_time"`
