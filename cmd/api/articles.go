@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"time"
@@ -9,7 +10,24 @@ import (
 )
 
 func (app *application) createArticleHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "create a new article")
+	var input struct {
+		Title        string            `json:"title"`
+		PublishDate  time.Time         `json:"publish_date"`
+		ReadTime     int32             `json:"read_time ,omitempty"`
+		Authors      []string          `json:"authors"`
+		Excerpt      string            `json:"excerpt"`
+		Tags         []string          `json:"tags"`
+		SourceURL    string            `json:"source_url"`
+		RelatedLinks map[string]string `json:"related_links"`
+	}
+
+	err := json.NewDecoder(r.Body).Decode(&input)
+	if err != nil {
+		app.errorResponse(w, r, http.StatusBadRequest, err.Error())
+		return
+	}
+
+	fmt.Fprintf(w, "%+v\n", input)
 }
 
 func (app *application) showArticleHandler(w http.ResponseWriter, r *http.Request) {
